@@ -1,0 +1,58 @@
+<html>
+    <head>
+
+        <script src="mmd.js" charset="utf-8"></script>
+        <script src="plaintext.js" charset="utf-8"></script>
+
+        <script src="http://requirejs.org/docs/release/2.1.17/minified/require.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <textarea rows="4" cols="50" id="testfield">
+            # asdasdas
+
+            asdasdsdsds[^1] asdasd
+            asdasdasdas.
+
+            [^1]: zitat
+        </textarea>
+        <input type="button" name="testbutton" id="testbutton">
+
+        <div id="test">
+
+        </div>
+
+
+
+        <script type="text/javascript">
+
+
+
+            var markdown_to_string = Module.cwrap('markdown_to_string', 'string', ['string', 'number', 'number']);
+            var button = document.getElementById("testbutton");
+            var field = document.getElementById("testfield");
+            var testdiv = document.getElementById("test");
+            var renderer = new MultiMarkdown.Renderer(MultiMarkdown.RendererType.MULTIMARKDOWN, {
+            parserExtensions: [MultiMarkdown.EXT_SMART]});
+
+            function updateText() {
+                // FIXME:  calculate renderer._parserExtensionsSum properly
+                // testdiv.innerHTML = markdown_to_string(field.value, renderer._parserExtensionsSum, renderer._exportFormat);
+
+                // this is hacky:
+                testdiv.innerHTML = markdown_to_string(field.value, 1 << 5, renderer._exportFormat);
+            }
+
+
+
+            field.addEventListener("keyup", updateText, false);
+            updateText(); // run once at init
+
+        </script>
+
+
+
+
+    </body>
+
+
+</html>
