@@ -15,6 +15,8 @@ parse_utilities.c rng.c rtf.c text.c toc.c transclude.c writer.c parser.c \
 ```
 
 ## Example
+see: http://poinck.github.io/mmd.js/
+
 The example makes use of some ideas of [plaintext.js](https://github.com/dtjm/plaintext.js)
 
 ## Copyright
